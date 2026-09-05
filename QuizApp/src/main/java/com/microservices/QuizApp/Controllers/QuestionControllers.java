@@ -5,6 +5,7 @@ import com.microservices.QuizApp.Model.Question;
 import com.microservices.QuizApp.Services.QuestionServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,12 @@ public class QuestionControllers {
     public List<Question> getAllQuestion(){
 
         return questionServices.getAllQuestions();
+
+    }
+
+    @GetMapping("category/{category}")
+    public List<Question> getQuestionByCategory(@PathVariable String category){
+        return questionServices.getQuestionByCategory(category);
 
     }
 }

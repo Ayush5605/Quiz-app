@@ -4,6 +4,9 @@ package com.microservices.QuizApp.Controllers;
 import com.microservices.QuizApp.Model.Question;
 import com.microservices.QuizApp.Services.QuestionServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +20,7 @@ public class QuestionControllers {
 
 
     @GetMapping("allQuestions")
-    public List<Question> getAllQuestion(){
+    public ResponseEntity<List<Question>> getAllQuestion(){
 
         return questionServices.getAllQuestions();
 

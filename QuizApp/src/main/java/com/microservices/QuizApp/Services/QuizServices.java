@@ -1,27 +1,45 @@
 package com.microservices.QuizApp.Services;
 
 
+import com.microservices.QuizApp.Model.Question;
+import com.microservices.QuizApp.Model.Quiz;
+import com.microservices.QuizApp.dao.QuestionDao;
+import com.microservices.QuizApp.dao.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("quiz")
+import java.util.List;
+
+@Service
 public class QuizServices {
 
     @Autowired
-    QuizServices quizservices;
+    QuizDao quizdao;
 
-    @PostMapping("create")
-    public ResponseEntity<String> createQuiz(@RequestParam String category,@RequestParam int numQ,@RequestParam String title){
+    @Autowired
+    QuestionDao questionDao;
 
-        return new ResponseEntity<>("success", HttpStatus.OK)
+    public ResponseEntity<String> createQuiz(String category,int numQ,String title){
 
+        List<Question> questions=questionDao.findRandomQuestionsByCategory(category,numQ);
+        Quiz quiz=new Quiz();
+
+        quiz.setTitle(title);
+        quiz.setQuestions(questions);
+        quizdao.save(quiz);
+
+
+        
+        return new ResponseEntity<>("success",HttpStatus.OK);
     }
+
+
 
 }

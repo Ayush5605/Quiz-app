@@ -3,6 +3,8 @@ package com.micro1.QuestionServices.Controllers;
 
 
 import com.micro1.QuestionServices.Model.Question;
+import com.micro1.QuestionServices.Model.QuestionWrapper;
+import com.micro1.QuestionServices.Model.Response;
 import com.micro1.QuestionServices.Services.QuestionServices;
 import com.micro1.QuestionServices.dao.QuestionDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,16 @@ public class QuestionControllers {
     @GetMapping("generate")
     public ResponseEntity<List<Integer>> getQuestionForQuiz(@RequestParam String categoryName,@RequestParam Integer numQuestion){
         return questionServices.getQuestionForQuiz(categoryName,numQuestion);
+    }
+
+    @PostMapping("getQuestions")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionId){
+        return questionServices.getQuestionsFromId(questionId);
+    }
+
+    @PostMapping("getScore")
+    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses){
+        return questionServices.getScore(responses);
     }
 
 

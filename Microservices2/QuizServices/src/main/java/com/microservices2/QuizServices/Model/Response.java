@@ -1,4 +1,4 @@
-package com.microservices.QuizApp.Model;
+package com.microservices2.QuizServices.Model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

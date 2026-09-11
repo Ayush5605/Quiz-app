@@ -1,11 +1,11 @@
-package com.microservices.QuizApp.Services;
+package com.microservices2.QuizServices.Services;
 
 
-import com.microservices.QuizApp.Model.Question;
-import com.microservices.QuizApp.Model.QuestionWrapper;
-import com.microservices.QuizApp.Model.Quiz;
-import com.microservices.QuizApp.Model.Response;
-import com.microservices.QuizApp.dao.QuizDao;
+import com.microservices2.QuizServices.Model.Question;
+import com.microservices2.QuizServices.Model.QuestionWrapper;
+import com.microservices2.QuizServices.Model.Quiz;
+import com.microservices2.QuizServices.Model.Response;
+import com.microservices2.QuizServices.dao.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +21,15 @@ public class QuizServices {
     @Autowired
     QuizDao quizdao;
 
-    @Autowired
-    QuestionDao questionDao;
+
 
     public ResponseEntity<String> createQuiz(String category,int numQ,String title){
 
-        List<Question> questions=questionDao.findRandomQuestionsByCategory(category,numQ);
+//        List<Question> questions=questionDao.findRandomQuestionsByCategory(category,numQ);
         Quiz quiz=new Quiz();
 
         quiz.setTitle(title);
-        quiz.setQuestions(questions);
+//        quiz.setQuestions(questions);
         quizdao.save(quiz);
 
 

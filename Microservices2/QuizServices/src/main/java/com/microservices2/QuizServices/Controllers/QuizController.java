@@ -1,7 +1,6 @@
 package com.microservices2.QuizServices.Controllers;
 
 import com.microservices2.QuizServices.Model.QuestionWrapper;
-import com.microservices2.QuizServices.Model.Response;
 import com.microservices2.QuizServices.Model.QuizDTO;
 import com.microservices2.QuizServices.Services.QuizServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +19,20 @@ public class QuizController {
     @PostMapping("create")
     public ResponseEntity<String> createQuiz(@RequestBody QuizDTO quizDTO){
 
-        return quizservices.createQuiz(quizDTO.getCategoryName(),quizDTO.getNewQuestions(), quizDTO.getTitle());
+        return quizservices.createQuiz(quizDTO.getCategoryName(),quizDTO.getNumQuestions(), quizDTO.getTitle());
 
     }
 
-//    @GetMapping("{id}")
-//    public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable Integer id){
-//        return quizservices.getQuizQuestions(id);
-//
-//
-//    }
+    @GetMapping("{id}")
+    public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable Integer id){
+        return quizservices.getQuizQuestions(id);
 
-//    @PostMapping("submit/{id}")
-//    public ResponseEntity<Integer> submitQuiz(@PathVariable int id,@RequestBody List<Response> response){
-//         return quizservices.calculateResult(id,response);
-//
-//    }
+
+    }
+
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> submitQuiz(@PathVariable int id,@RequestBody List<Response> response){
+         return quizservices.calculateResult(id,response);
+
+    }
 }

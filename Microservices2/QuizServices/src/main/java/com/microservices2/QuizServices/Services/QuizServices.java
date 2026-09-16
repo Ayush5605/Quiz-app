@@ -49,20 +49,11 @@ public class QuizServices {
         return questions;
     }
 
-//    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> response){
-//        Quiz quiz=quizdao.findById(id).get();
-//        List<Question> questions=quiz.getQuestions();
-//        int score=0;
-//
-//
-//        for(int i=0;i<response.size();i++){
-//            if(response.get(i).getResponse().equals(questions.get(i).getRightAnswer())){
-//                score++;
-//            }
-//        }
-//        return new ResponseEntity<>(score,HttpStatus.OK);
-//
-//    }
+    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> response){
+        ResponseEntity<Integer> score=quizInterface.getScore(response);
+        return score;
+
+    }
 
 
 

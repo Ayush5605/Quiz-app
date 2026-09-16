@@ -5,6 +5,7 @@ import com.microservices2.QuizServices.Model.QuestionWrapper;
 import com.microservices2.QuizServices.Model.Quiz;
 import com.microservices2.QuizServices.Model.Response;
 import com.microservices2.QuizServices.dao.QuizDao;
+import com.microservices2.QuizServices.feign.QuizInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +21,18 @@ public class QuizServices {
     @Autowired
     QuizDao quizdao;
 
+    @Autowired
+    QuizInterface quizInterface;
+
 
 
     public ResponseEntity<String> createQuiz(String category,int numQ,String title){
-
-        List<Integer> questions;
+        List<Integer>questions=quizInterface.getQuestionForQuiz(category,numQ).getBody();
         Quiz quiz=new Quiz();
-
         quiz.setTitle(title);
-//        quiz.setQuestions(questions);
+        quiz.setQuestionIds(questions);
         quizdao.save(quiz);
+
 
 
 

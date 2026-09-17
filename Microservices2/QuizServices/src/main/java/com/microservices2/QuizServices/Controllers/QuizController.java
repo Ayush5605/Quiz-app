@@ -2,6 +2,7 @@ package com.microservices2.QuizServices.Controllers;
 
 import com.microservices2.QuizServices.Model.QuestionWrapper;
 import com.microservices2.QuizServices.Model.QuizDTO;
+import com.microservices2.QuizServices.Model.Response;
 import com.microservices2.QuizServices.Services.QuizServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
